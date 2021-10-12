@@ -12,8 +12,8 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     
     var tableView = UITableView()
     var sectionArray = [""]
-    var vcArray = [LotteryViewController(),SpinOf3DViewController(),SpinProgressViewController(),BubbleViewController(),MeterLabelViewController(),RollLabelViewController(),ButtonStyleViewController(),MoveCellViewController()]
-    var titleArray = ["Lottery","SpinOf3D","SpinProgress","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell"]
+    var vcArray = [LotteryViewController(),SpinOf3DViewController(),SpinProgressViewController(),BubbleViewController(),MeterLabelViewController(),RollLabelViewController(),ButtonStyleViewController(),MoveCellViewController(),MenuViewController(),RewardsPopupViewController()]
+    var titleArray = ["Lottery","SpinOf3D","SpinProgress","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","Menu","RewardsPopup"]
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		942E914926F1D91100D33EEF /* MoveCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E914826F1D91100D33EEF /* MoveCellViewController.swift */; };
 		947A9B6B26E8A63A0089E28E /* ButtonStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A9B6A26E8A63A0089E28E /* ButtonStyleViewController.swift */; };
+		94A6F8D627016F430053AC9E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A6F8D527016F430053AC9E /* MenuViewController.swift */; };
+		94AAF30E27055174006ED9B7 /* RewardsPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */; };
 		94B9E6A326B14287000CCA6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B9E6A226B14287000CCA6A /* AppDelegate.swift */; };
 		94B9E6A526B14287000CCA6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B9E6A426B14287000CCA6A /* SceneDelegate.swift */; };
 		94B9E6A726B14287000CCA6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B9E6A626B14287000CCA6A /* ViewController.swift */; };
@@ -32,6 +34,8 @@
 		4A757CF86C564B6243306617 /* Pods-AnimationCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimationCollection.debug.xcconfig"; path = "Target Support Files/Pods-AnimationCollection/Pods-AnimationCollection.debug.xcconfig"; sourceTree = "<group>"; };
 		942E914826F1D91100D33EEF /* MoveCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCellViewController.swift; sourceTree = "<group>"; };
 		947A9B6A26E8A63A0089E28E /* ButtonStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleViewController.swift; sourceTree = "<group>"; };
+		94A6F8D527016F430053AC9E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsPopupViewController.swift; sourceTree = "<group>"; };
 		94B9E69F26B14287000CCA6A /* AnimationCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimationCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B9E6A226B14287000CCA6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94B9E6A426B14287000CCA6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,6 +121,8 @@
 				94FCECB226CE54BF00CD83B2 /* RollLabelViewController.swift */,
 				947A9B6A26E8A63A0089E28E /* ButtonStyleViewController.swift */,
 				942E914826F1D91100D33EEF /* MoveCellViewController.swift */,
+				94A6F8D527016F430053AC9E /* MenuViewController.swift */,
+				94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -246,6 +252,7 @@
 				942E914926F1D91100D33EEF /* MoveCellViewController.swift in Sources */,
 				94B9E6CB26B1505A000CCA6A /* BubbleViewController.swift in Sources */,
 				94B9E6BB26B143CF000CCA6A /* AnimationCollectionList.swift in Sources */,
+				94A6F8D627016F430053AC9E /* MenuViewController.swift in Sources */,
 				94FCECB326CE54BF00CD83B2 /* RollLabelViewController.swift in Sources */,
 				94B9E6C826B14E35000CCA6A /* SpinProgressViewController.swift in Sources */,
 				94B9E6F026B161C4000CCA6A /* MeterLabelViewController.swift in Sources */,
@@ -254,6 +261,7 @@
 				94B9E6A526B14287000CCA6A /* SceneDelegate.swift in Sources */,
 				94B9E6C526B14D1F000CCA6A /* SpinOf3DViewController.swift in Sources */,
 				94B9E6C226B14A9E000CCA6A /* LotteryViewController.swift in Sources */,
+				94AAF30E27055174006ED9B7 /* RewardsPopupViewController.swift in Sources */,
 				947A9B6B26E8A63A0089E28E /* ButtonStyleViewController.swift in Sources */,
 				94B9E6E926B1554A000CCA6A /* Const.swift in Sources */,
 			);
