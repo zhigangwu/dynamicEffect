@@ -7,14 +7,17 @@
 
 import UIKit
 
-class LotteryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-
+class LotteryViewController: UIViewController,NavTitleProtocol,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    var navTitle : String { return "Lottery" }
+    
     var collectionView : UICollectionView? = nil
     var win : Array<Int> = [3,2]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
         
         let layout = ProfileCustomLayout()
         

@@ -11,7 +11,9 @@ public let HexRGBAlpha:((Int,Float) -> UIColor) = { (rgbValue : Int, alpha : Flo
     return UIColor(red: CGFloat(CGFloat((rgbValue & 0xFF0000) >> 16)/255), green: CGFloat(CGFloat((rgbValue & 0xFF00) >> 8)/255), blue: CGFloat(CGFloat(rgbValue & 0xFF)/255), alpha: CGFloat(alpha))
 }
 
-class ButtonStyleViewController: UIViewController {
+class ButtonStyleViewController: UIViewController,NavTitleProtocol {
+    
+    var navTitle: String {return "ButtonStyle"}
     
     let locusButton = UIButton()
     let fillButton = UIButton()
@@ -19,6 +21,7 @@ class ButtonStyleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
         
         locusAnimation()
         ballProgress()

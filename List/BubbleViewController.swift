@@ -7,13 +7,16 @@
 
 import UIKit
 
-class BubbleViewController: UIViewController {
+class BubbleViewController: UIViewController,NavTitleProtocol {
+    
+    var navTitle: String {return "Bubble"}
     
     let bubble = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
         
         bubble.frame = CGRect(x: WIDTH / 2 - 42, y: HEIGHT / 2 - 42, width: 84, height: 84)
         bubble.image = UIImage(named: "lys_dragon_icon01")

@@ -7,7 +7,9 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: UIViewController,NavTitleProtocol {
+    
+    var navTitle: String {return "Menu"}
     
     let menuView = UIView()
     
@@ -25,11 +27,14 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
 
         animation1()
         animation2()
+        animation3()
+        animation4()
     }
-    
+    // MARK: animation1
     func animation1() {
         let menuButton = UIButton()
         menuButton.layer.cornerRadius = 8
@@ -130,6 +135,7 @@ class MenuViewController: UIViewController {
     let searchLabel = UILabel()
     let baseView =  UIView()
     
+    // MARK: animation2
     func animation2() {
         baseView.frame = CGRect(x: 20, y: 140, width: 190, height: 50)
         baseView.backgroundColor = HexRGBAlpha(0x6A5ACD,1)
@@ -200,16 +206,16 @@ class MenuViewController: UIViewController {
         }
     
 
-        let remove = UIButton()
-        remove.setTitle("重置", for: .normal)
-        remove.setTitleColor(.black, for: .normal)
-        remove.addTarget(self, action: #selector(clickRemove), for: .touchUpInside)
-        self.view.addSubview(remove)
-        remove.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.centerX.equalToSuperview()
-            ConstraintMaker.bottom.equalToSuperview().offset(-30)
-            ConstraintMaker.size.equalTo(CGSize(width: 80, height: 40))
-        }
+//        let remove = UIButton()
+//        remove.setTitle("重置", for: .normal)
+//        remove.setTitleColor(.black, for: .normal)
+//        remove.addTarget(self, action: #selector(clickRemove), for: .touchUpInside)
+//        self.view.addSubview(remove)
+//        remove.snp.makeConstraints { (ConstraintMaker) in
+//            ConstraintMaker.centerX.equalToSuperview()
+//            ConstraintMaker.bottom.equalToSuperview().offset(-30)
+//            ConstraintMaker.size.equalTo(CGSize(width: 80, height: 40))
+//        }
         
     }
 
@@ -288,6 +294,50 @@ class MenuViewController: UIViewController {
     
     @objc func clickRemove() {
 
+    }
+    
+    // MARK: animation3
+    func animation3() {
+        let follow = UIButton(frame: CGRect(x: 20, y: 220, width: 120, height: 40))
+        follow.layer.cornerRadius = 20
+        follow.layer.masksToBounds = true
+        follow.layer.borderWidth = 1
+        follow.layer.borderColor = HexRGBAlpha(0xFF3E96,1).cgColor
+        follow.setTitle("follow", for: .normal)
+        follow.setTitleColor(HexRGBAlpha(0xFF3E96,1), for: .normal)
+        follow.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        follow.addTarget(self, action: #selector(clickFollow), for: .touchUpInside)
+        self.view.addSubview(follow)
+    }
+    
+    @objc func clickFollow(sender : UIButton) {
+        UIView.animate(withDuration: 0.3) {
+            sender.backgroundColor = HexRGBAlpha(0xFF3E96,1)
+        } completion: { (Bool) in
+            UIView.animate(withDuration: 0.3) {
+                sender.frame = CGRect(x: 100, y: 220, width: 40, height: 40)
+            } completion: { (Bool) in
+                sender.setImage(UIImage(named: "dwj_login_account_icon"), for: .normal)
+                sender.setTitle("", for: .normal)
+            }
+        }
+    }
+    
+    // MARK: animation4
+    func animation4() {
+        let FKButton = UIButton(frame: CGRect(x: 40, y: 300, width: 80, height: 80))
+        FKButton.layer.cornerRadius = 10
+        FKButton.layer.masksToBounds = true
+        FKButton.backgroundColor = HexRGBAlpha(0x0066ff,1)
+        FKButton.setImage(UIImage(named: "dwj_black_close_btn"), for: .normal)
+        FKButton.addTarget(self, action: #selector(clickFKButton), for: .touchUpInside)
+        self.view.addSubview(FKButton)
+    }
+    
+    @objc func clickFKButton(sender : UIButton) {
+        UIView.animate(withDuration: 0.5) {
+            sender.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+        }
     }
     
     /*

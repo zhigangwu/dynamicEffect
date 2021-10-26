@@ -7,7 +7,9 @@
 
 import UIKit
 
-class MoveCellViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class MoveCellViewController: UIViewController,NavTitleProtocol,UITableViewDelegate,UITableViewDataSource {
+    
+    var navTitle: String {return "MoveCell"}
 
     let tableView = UITableView()
     let dataArray = ["1","2","3","4","5","6","7","8","9"]
@@ -16,6 +18,7 @@ class MoveCellViewController: UIViewController,UITableViewDelegate,UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
         
         let segmentedControl = UISegmentedControl.init(items: ["渐进","同时"])
         segmentedControl.addTarget(self, action: #selector(triggerSegmentedControl), for: .valueChanged)

@@ -12,8 +12,7 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     
     var tableView = UITableView()
     var sectionArray = [""]
-    var vcArray = [LotteryViewController(),SpinOf3DViewController(),SpinProgressViewController(),BubbleViewController(),MeterLabelViewController(),RollLabelViewController(),ButtonStyleViewController(),MoveCellViewController(),MenuViewController(),RewardsPopupViewController()]
-    var titleArray = ["Lottery","SpinOf3D","SpinProgress","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","Menu","RewardsPopup"]
+    var titleArray = ["Lottery","SpinOf3D","SpinProgress","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","Menu","RewardsPopup","FoldMenu"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +41,14 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
         let listCell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath)
         
         listCell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        
+
         listCell.textLabel?.text = titleArray[indexPath.row]
         
         return listCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(vcArray[indexPath.row], animated: true)
+        self.navigationController?.pushViewController(Factory.create(index: indexPath.row) as! UIViewController, animated: true)
     }
 
     /*
@@ -63,6 +62,42 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     */
 
 }
+
+protocol NavTitleProtocol {
+    var navTitle : String { get }
+}
+
+class Factory {
+    static func create(index : Int) -> NavTitleProtocol {
+        switch index {
+        case 0:
+            return LotteryViewController()
+        case 1:
+            return SpinOf3DViewController()
+        case 2:
+            return SpinProgressViewController()
+        case 3:
+            return BubbleViewController()
+        case 4:
+            return MeterLabelViewController()
+        case 5:
+            return RollLabelViewController()
+        case 6:
+            return ButtonStyleViewController()
+        case 7:
+            return MoveCellViewController()
+        case 8:
+            return MenuViewController()
+        case 9:
+            return RewardsPopupViewController()
+        case 10:
+            return FoldMenuViewController()
+        default:
+            return LotteryViewController()
+        }
+    }
+}
+
 
 
 

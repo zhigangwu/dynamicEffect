@@ -14,7 +14,9 @@ public let RGBAlpa:((Float,Float,Float,Float) -> UIColor ) = { (r: Float, g: Flo
 
 
 
-class SpinProgressViewController: UIViewController {
+class SpinProgressViewController: UIViewController,NavTitleProtocol {
+    
+    var navTitle: String {return "SpinProgress"}
     
     let bgView = UIView()
     let spinProgressView = SpinProgressView(frame: .zero)
@@ -27,6 +29,7 @@ class SpinProgressViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
         
         bgView.backgroundColor = .lightGray
         bgView.frame = CGRect(x: WIDTH / 2 - 42, y: HEIGHT / 2 - 42, width: 84, height: 84)

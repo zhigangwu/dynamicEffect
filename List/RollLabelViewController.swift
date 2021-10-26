@@ -7,7 +7,9 @@
 
 import UIKit
 
-class RollLabelViewController: UIViewController {
+class RollLabelViewController: UIViewController,NavTitleProtocol {
+    
+    var navTitle: String {return "RollLabel"}
     
     let scrollLabelView = ScrollLabelView()
     
@@ -19,6 +21,7 @@ class RollLabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
         
         //单个滚动
         scrollLabelView.backgroundColor = .blue

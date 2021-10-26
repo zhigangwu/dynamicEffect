@@ -7,7 +7,9 @@
 
 import UIKit
 
-class SpinOf3DViewController: UIViewController {
+class SpinOf3DViewController: UIViewController,NavTitleProtocol {
+    
+    var navTitle: String {return "SpinOf3D"}
     
     var cardImageView = UIImageView()
     
@@ -20,6 +22,7 @@ class SpinOf3DViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
         
         let chongzhi = UIButton()
         chongzhi.setTitle("重置", for: .normal)

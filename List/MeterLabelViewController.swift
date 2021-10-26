@@ -7,7 +7,9 @@
 
 import UIKit
 
-class MeterLabelViewController: UIViewController {
+class MeterLabelViewController: UIViewController,NavTitleProtocol {
+    
+    var navTitle: String {return "MeterLabel"}
     
     var numValue : Int = 0
     let numberLabel = UILabel()
@@ -15,6 +17,7 @@ class MeterLabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = navTitle
         
         numberLabel.text = String(numValue)
         numberLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
@@ -51,7 +54,7 @@ class MeterLabelViewController: UIViewController {
         
         if acceleratorTimer == nil {
             acceleratorTimer = Timer.scheduledTimer(withTimeInterval: 0.00168, repeats: true, block: { [weak self] (timer) in
-                self!.numValue =  self!.numValue + 1
+                self?.numValue =  self!.numValue + 1
                 DispatchQueue.main.async {
                     self?.numberLabel.text = String(self!.numValue)
                 }

@@ -7,7 +7,9 @@
 
 import UIKit
 
-class RewardsPopupViewController: UIViewController {
+class RewardsPopupViewController: UIViewController,NavTitleProtocol {
+    
+    var navTitle: String {return "RewardsPopup"}
     
     let imageView = UIImageView()
     let imageViewCopy = UIImageView()
@@ -16,6 +18,7 @@ class RewardsPopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .lightGray
+        self.navigationItem.title = navTitle
         
         imageView.image = UIImage(named: "img_award_pop_top")
         imageView.transform = CGAffineTransform(scaleX: 0, y: 0)
