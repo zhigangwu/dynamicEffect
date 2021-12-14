@@ -92,6 +92,10 @@ class RewardsPopupViewController: UIViewController,NavTitleProtocol {
         self.rewardImageView.center = CGPoint(x: -WIDTH * 2 , y: self.imageView.center.y + 55 + 81 - 15)
         animation()
     }
+    
+    deinit {
+        print("释放",self)
+    }
 
     /*
     // MARK: - Navigation

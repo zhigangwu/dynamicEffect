@@ -118,6 +118,10 @@ class RollLabelViewController: UIViewController,NavTitleProtocol {
             moreScrollLabelView.underLabel.text = String(moreUnderLabelValue + 1)
         }
     }
+    
+    deinit {
+        print("释放",self)
+    }
 }
 
 class ScrollLabelView: UIView {

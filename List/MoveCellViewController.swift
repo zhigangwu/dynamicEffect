@@ -110,6 +110,10 @@ class MoveCellViewController: UIViewController,NavTitleProtocol,UITableViewDeleg
         indexArray = []
         tableView.reloadData()
     }
+    
+    deinit {
+        print("释放",self)
+    }
 }
 
 class MoveCellTableViewCell: UITableViewCell {

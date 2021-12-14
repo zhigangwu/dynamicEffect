@@ -22,17 +22,25 @@ class BubbleViewController: UIViewController,NavTitleProtocol {
         bubble.image = UIImage(named: "lys_dragon_icon01")
         self.view.addSubview(bubble)
         
-//        driftAnimation()
+        driftAnimation()
+    }
+    
+    var continuedBool : Bool = false
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.continuedBool = true
     }
     
     func driftAnimation() {
-        UIView.animate(withDuration: 0.8) {
-            self.bubble.frame = CGRect(x: WIDTH / 2 - 42, y: HEIGHT / 2 - 42 - 10, width: 84, height: 84)
-        } completion: { (Bool) in
+        if continuedBool == false {
             UIView.animate(withDuration: 0.8) {
-                self.bubble.frame = CGRect(x: WIDTH / 2 - 42, y: HEIGHT / 2 - 42 + 10, width: 84, height: 84)
+                self.bubble.frame = CGRect(x: WIDTH / 2 - 42, y: HEIGHT / 2 - 42 - 10, width: 84, height: 84)
             } completion: { (Bool) in
-                self.driftAnimation()
+                UIView.animate(withDuration: 0.8) {
+                    self.bubble.frame = CGRect(x: WIDTH / 2 - 42, y: HEIGHT / 2 - 42 + 10, width: 84, height: 84)
+                } completion: { (Bool) in
+                    self.driftAnimation()
+                }
             }
         }
     }

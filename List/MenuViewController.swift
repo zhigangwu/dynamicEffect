@@ -340,6 +340,10 @@ class MenuViewController: UIViewController,NavTitleProtocol {
         }
     }
     
+    deinit {
+        print("释放",self)
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		942BC5A127608D220097240C /* 翻倍动效.gif in Resources */ = {isa = PBXBuildFile; fileRef = 942BC5A027608D220097240C /* 翻倍动效.gif */; };
 		942E914926F1D91100D33EEF /* MoveCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942E914826F1D91100D33EEF /* MoveCellViewController.swift */; };
+		945E1ABC274CEDDC00BE151D /* CountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945E1ABB274CEDDC00BE151D /* CountDownViewController.swift */; };
+		945E1ABF274CEE5100BE151D /* CountDownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945E1ABE274CEE5100BE151D /* CountDownModel.swift */; };
 		947A9B6B26E8A63A0089E28E /* ButtonStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A9B6A26E8A63A0089E28E /* ButtonStyleViewController.swift */; };
 		947BCA732727D2A3005F89C5 /* FoldMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947BCA722727D2A3005F89C5 /* FoldMenuViewController.swift */; };
 		94A6F8D627016F430053AC9E /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A6F8D527016F430053AC9E /* MenuViewController.swift */; };
 		94AAF30E27055174006ED9B7 /* RewardsPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */; };
 		94B9E6A326B14287000CCA6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B9E6A226B14287000CCA6A /* AppDelegate.swift */; };
 		94B9E6A526B14287000CCA6A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B9E6A426B14287000CCA6A /* SceneDelegate.swift */; };
-		94B9E6A726B14287000CCA6A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B9E6A626B14287000CCA6A /* ViewController.swift */; };
 		94B9E6AA26B14287000CCA6A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B9E6A826B14287000CCA6A /* Main.storyboard */; };
 		94B9E6AC26B1428A000CCA6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94B9E6AB26B1428A000CCA6A /* Assets.xcassets */; };
 		94B9E6AF26B1428A000CCA6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 94B9E6AD26B1428A000CCA6A /* LaunchScreen.storyboard */; };
@@ -33,7 +35,10 @@
 		09E5FA9528B56CB10FF674AB /* Pods_AnimationCollection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnimationCollection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D90C5EBAF07AACA4210916A /* Pods-AnimationCollection.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimationCollection.release.xcconfig"; path = "Target Support Files/Pods-AnimationCollection/Pods-AnimationCollection.release.xcconfig"; sourceTree = "<group>"; };
 		4A757CF86C564B6243306617 /* Pods-AnimationCollection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnimationCollection.debug.xcconfig"; path = "Target Support Files/Pods-AnimationCollection/Pods-AnimationCollection.debug.xcconfig"; sourceTree = "<group>"; };
+		942BC5A027608D220097240C /* 翻倍动效.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "翻倍动效.gif"; sourceTree = "<group>"; };
 		942E914826F1D91100D33EEF /* MoveCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveCellViewController.swift; sourceTree = "<group>"; };
+		945E1ABB274CEDDC00BE151D /* CountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownViewController.swift; sourceTree = "<group>"; };
+		945E1ABE274CEE5100BE151D /* CountDownModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownModel.swift; sourceTree = "<group>"; };
 		947A9B6A26E8A63A0089E28E /* ButtonStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleViewController.swift; sourceTree = "<group>"; };
 		947BCA722727D2A3005F89C5 /* FoldMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldMenuViewController.swift; sourceTree = "<group>"; };
 		94A6F8D527016F430053AC9E /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -41,7 +46,6 @@
 		94B9E69F26B14287000CCA6A /* AnimationCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimationCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94B9E6A226B14287000CCA6A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94B9E6A426B14287000CCA6A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		94B9E6A626B14287000CCA6A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		94B9E6A926B14287000CCA6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		94B9E6AB26B1428A000CCA6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		94B9E6AE26B1428A000CCA6A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,7 +106,6 @@
 			children = (
 				94B9E6A226B14287000CCA6A /* AppDelegate.swift */,
 				94B9E6A426B14287000CCA6A /* SceneDelegate.swift */,
-				94B9E6A626B14287000CCA6A /* ViewController.swift */,
 				94B9E6E826B1554A000CCA6A /* Const.swift */,
 				94B9E6A826B14287000CCA6A /* Main.storyboard */,
 				94B9E6AB26B1428A000CCA6A /* Assets.xcassets */,
@@ -126,6 +129,9 @@
 				94A6F8D527016F430053AC9E /* MenuViewController.swift */,
 				94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */,
 				947BCA722727D2A3005F89C5 /* FoldMenuViewController.swift */,
+				945E1ABB274CEDDC00BE151D /* CountDownViewController.swift */,
+				945E1ABE274CEE5100BE151D /* CountDownModel.swift */,
+				942BC5A027608D220097240C /* 翻倍动效.gif */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -197,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				942BC5A127608D220097240C /* 翻倍动效.gif in Resources */,
 				94B9E6AF26B1428A000CCA6A /* LaunchScreen.storyboard in Resources */,
 				94B9E6AC26B1428A000CCA6A /* Assets.xcassets in Resources */,
 				94B9E6AA26B14287000CCA6A /* Main.storyboard in Resources */,
@@ -257,10 +264,10 @@
 				94B9E6CB26B1505A000CCA6A /* BubbleViewController.swift in Sources */,
 				94B9E6BB26B143CF000CCA6A /* AnimationCollectionList.swift in Sources */,
 				94A6F8D627016F430053AC9E /* MenuViewController.swift in Sources */,
+				945E1ABC274CEDDC00BE151D /* CountDownViewController.swift in Sources */,
 				94FCECB326CE54BF00CD83B2 /* RollLabelViewController.swift in Sources */,
 				94B9E6C826B14E35000CCA6A /* SpinProgressViewController.swift in Sources */,
 				94B9E6F026B161C4000CCA6A /* MeterLabelViewController.swift in Sources */,
-				94B9E6A726B14287000CCA6A /* ViewController.swift in Sources */,
 				94B9E6A326B14287000CCA6A /* AppDelegate.swift in Sources */,
 				94B9E6A526B14287000CCA6A /* SceneDelegate.swift in Sources */,
 				94B9E6C526B14D1F000CCA6A /* SpinOf3DViewController.swift in Sources */,
@@ -268,6 +275,7 @@
 				94AAF30E27055174006ED9B7 /* RewardsPopupViewController.swift in Sources */,
 				947A9B6B26E8A63A0089E28E /* ButtonStyleViewController.swift in Sources */,
 				94B9E6E926B1554A000CCA6A /* Const.swift in Sources */,
+				945E1ABF274CEE5100BE151D /* CountDownModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

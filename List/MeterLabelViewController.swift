@@ -46,6 +46,12 @@ class MeterLabelViewController: UIViewController,NavTitleProtocol {
 
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.acceleratorTimer?.invalidate()
+        self.acceleratorTimer = nil
+    }
+    
     var acceleratorTimer : Timer? = nil
     
     func endOfCountdown(stopValue : Int) {
@@ -71,6 +77,10 @@ class MeterLabelViewController: UIViewController,NavTitleProtocol {
         endOfCountdown(stopValue: 475)
     }
 
+    deinit {
+        print("释放",self)
+    }
+    
     /*
     // MARK: - Navigation
 

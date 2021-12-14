@@ -122,6 +122,10 @@ class FoldMenuViewController: UIViewController,NavTitleProtocol,UITableViewDeleg
         
         sideMenu.reloadData()
     }
+    
+    deinit {
+        print("释放",self)
+    }
 
     /*
     // MARK: - Navigation

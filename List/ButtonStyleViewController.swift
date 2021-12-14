@@ -159,7 +159,10 @@ class ButtonStyleViewController: UIViewController,NavTitleProtocol {
             self.fillLeftView.frame = CGRect(x: (WIDTH - 10) / 2, y: 470 , width: 0, height: 60)
         }
     }
-
+    
+    deinit {
+        print("释放",self)
+    }
     /*
     // MARK: - Navigation
 

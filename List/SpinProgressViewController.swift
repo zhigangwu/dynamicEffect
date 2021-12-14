@@ -44,13 +44,13 @@ class SpinProgressViewController: UIViewController,NavTitleProtocol {
         
         spinProgressView.isHidden = true
         spinProgressView.backgroundColor = .clear
-        spinProgressView.durationSecond = 10
-        spinProgressView.frame = cardButton.frame
-        self.view.addSubview(spinProgressView)
+        spinProgressView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        cardButton.addSubview(spinProgressView)
         
         cardButton.addTarget(self, action: #selector(clcikCardButton), for: .touchUpInside)
         
         layoutFrameAnimationImageView()
+        
     }
     
     let upAnimation = UIImageView()
@@ -92,16 +92,21 @@ class SpinProgressViewController: UIViewController,NavTitleProtocol {
     
     @objc func clcikCardButton() {
         self.startFrameAnimationImageView()
-        spinProgressView.setNeedsDisplay()
-        spinProgressView.isHidden = false
-        cardButton.isUserInteractionEnabled = false
+        
+        self.spinProgressView.durationSecond = 10
+        
+        self.spinProgressView.setNeedsDisplay()
+        self.spinProgressView.isHidden = false
+        self.cardButton.isUserInteractionEnabled = false
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
             self.reDrawView()
         })
-        
-        self.frameAnimationTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { (Timer) in
+
+        self.frameAnimationTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
             self.startFrameAnimationImageView()
         })
+        
+
         
     }
 
@@ -116,6 +121,8 @@ class SpinProgressViewController: UIViewController,NavTitleProtocol {
         }
     }
     
+
+    
     deinit {
         print("释放",self)
     }
@@ -127,19 +134,78 @@ class SpinProgressView : UIView {
     var finishAngle = Double.pi * 3 / 2
     
     var durationSecond : Double? = 0
+    var _second : Double? {
+        willSet {
+            durationSecond = _second
+            setNeedsDisplay()
+        }
+    }
     
     override func draw(_ rect: CGRect) {
 
         let color = RGBAlpa(0,0,0,0.6)
         color.set() // 设置线条颜色
         
-        let aPath = UIBezierPath(arcCenter: CGPoint(x: 40, y: 40), radius: 55, startAngle: (CGFloat)(beginAngle), endAngle: (CGFloat)(finishAngle), clockwise: true)
+        let aPath = UIBezierPath(arcCenter: CGPoint(x: 40, y: 40), radius: 55, startAngle: (CGFloat)(beginAngle), endAngle: (CGFloat)(finishAngle), clockwise: false)
         aPath.addLine(to: CGPoint(x: 40, y: 40))
-        aPath.close()
+//        aPath.close()
         aPath.lineWidth = 1.0 // 线条宽度
         aPath.fill() // Draws line 根据坐标点连线，填充
         
-        finishAngle += 2 * Double.pi / durationSecond!   // 更新终点
+        if durationSecond != 0 {
+            finishAngle += 2 * Double.pi / durationSecond!  
+        }
+         // 更新终点
+        
+        print("finishAngle====",finishAngle)
+    }
+}
+
+
+class ProgressControl: UIView {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        // Initialization code
+        
+        self.backgroundColor = UIColor(white: 1, alpha: 0)
     }
 
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
+    private var _progressValue:CGFloat = 0
+
+    public func getProgressValue()->CGFloat{
+        return _progressValue
+    }
+    
+    public func setProgressValue(value:CGFloat){
+        _progressValue = value
+        
+        setNeedsDisplay()
+    }
+    
+    // Only override drawRect: if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+//    override func draw(_ rect: CGRect)
+//    {
+//        // Drawing code
+//
+//        var ctx = UIGraphicsGetCurrentContext()
+//
+//        var r = rect.width/2
+//
+//        CGContextAddArc(ctx, r, r, r, 0, 3.141592653*2, 0)
+//        CGContextSetRGBFillColor(ctx!, 0.7, 0.7, 0.7, 1)
+//        ctx.fillPath()
+//
+//
+//        CGContextAddArc(ctx, r, r, r, 0, 3.141592653*2*_progressValue, 0)
+//        CGContextAddLineToPoint(ctx, r, r)
+//        CGContextSetRGBFillColor(ctx, 0, 0, 1, 1)
+//        CGContextFillPath(ctx)
+//    }
 }

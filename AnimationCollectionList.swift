@@ -12,7 +12,7 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     
     var tableView = UITableView()
     var sectionArray = [""]
-    var titleArray = ["Lottery","SpinOf3D","SpinProgress","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","Menu","RewardsPopup","FoldMenu"]
+    var titleArray = ["Lottery","SpinOf3D","SpinProgress","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","Menu","RewardsPopup","FoldMenu","CountDown"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,8 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview()
         }
-        
     }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionArray.count
@@ -92,6 +92,8 @@ class Factory {
             return RewardsPopupViewController()
         case 10:
             return FoldMenuViewController()
+        case 11:
+            return CountDownViewController()
         default:
             return LotteryViewController()
         }
