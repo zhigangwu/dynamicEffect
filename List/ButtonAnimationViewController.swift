@@ -1,5 +1,5 @@
 //
-//  MenuViewController.swift
+//  ButtonAnimationViewController.swift
 //  AnimationCollection
 //
 //  Created by Ryan on 2021/9/27.
@@ -7,16 +7,11 @@
 
 import UIKit
 
-class MenuViewController: UIViewController,NavTitleProtocol {
+class ButtonAnimationViewController: UIViewController,NavTitleProtocol {
     
-    var navTitle: String {return "Menu"}
+    var navTitle: String {return "ButtonAnimation"}
     
     let menuView = UIView()
-    
-    let button1 = UIButton()
-    let button2 = UIButton()
-    let button3 = UIButton()
-    let button4 = UIButton()
     
     let button5 = UIButton()
     
@@ -29,109 +24,11 @@ class MenuViewController: UIViewController,NavTitleProtocol {
         self.view.backgroundColor = .white
         self.navigationItem.title = navTitle
 
-        animation1()
         animation2()
         animation3()
         animation4()
     }
-    // MARK: animation1
-    func animation1() {
-        let menuButton = UIButton()
-        menuButton.layer.cornerRadius = 8
-        menuButton.layer.masksToBounds = true
-        menuButton.backgroundColor = .lightGray
-        menuButton.setImage(UIImage(named: "btn_arrow_up"), for: .normal)
-        menuButton.addTarget(self, action: #selector(clickMenuButton), for: .touchUpInside)
-        self.view.addSubview(menuButton)
-        menuButton.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.left.equalToSuperview().offset(20)
-            ConstraintMaker.bottom.equalToSuperview().offset(-80)
-            ConstraintMaker.size.equalTo(CGSize(width: 50, height: 30))
-        }
-        
-        menuView.alpha = 0
-        menuView.frame = CGRect(x: 20, y: HEIGHT - 80, width: 50, height: 185)
-        menuView.backgroundColor = HexRGBAlpha(0x66ccff,1)
-        menuView.layer.cornerRadius = 8
-        menuView.layer.masksToBounds = true
-        self.view.addSubview(menuView)
-        
-        button1.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
-        button1.transform = CGAffineTransform(scaleX: 0, y: 0)
-        button1.backgroundColor = HexRGBAlpha(0xFFA500,1)
-        button1.layer.cornerRadius = 20
-        button1.layer.masksToBounds = true
-        menuView.addSubview(button1)
-        
-        button2.frame = CGRect(x: 5, y: 50, width: 40, height: 40)
-        button2.transform = CGAffineTransform(scaleX: 0, y: 0)
-        button2.backgroundColor = HexRGBAlpha(0xFF3E96,1)
-        button2.layer.cornerRadius = 20
-        button2.layer.masksToBounds = true
-        menuView.addSubview(button2)
-        
-        button3.frame = CGRect(x: 5, y: 95, width: 40, height: 40)
-        button3.transform = CGAffineTransform(scaleX: 0, y: 0)
-        button3.backgroundColor = HexRGBAlpha(0xEE9572,1)
-        button3.layer.cornerRadius = 20
-        button3.layer.masksToBounds = true
-        menuView.addSubview(button3)
 
-        button4.frame = CGRect(x: 5, y: 140, width: 40, height: 40)
-        button4.transform = CGAffineTransform(scaleX: 0, y: 0)
-        button4.backgroundColor = HexRGBAlpha(0xE066FF,1)
-        button4.layer.cornerRadius = 20
-        button4.layer.masksToBounds = true
-        menuView.addSubview(button4)
-        
-    }
-
-    @objc func clickMenuButton(sender : UIButton) {
-        sender.isSelected = !sender.isSelected
-        if sender.isSelected {
-            UIView.animate(withDuration: 0.4) {
-                self.menuView.alpha = 1
-                self.menuView.frame = CGRect(x: 20, y: HEIGHT - 80 - 30 - 20 - 185, width: 50, height: 185)
-            } completion: { (Bool) in
-
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                UIView.animate(withDuration: 0.1) {
-                    self.button1.transform = CGAffineTransform(scaleX: 1, y: 1)
-                }
-
-                UIView.animate(withDuration: 0.15) {
-                    self.button2.transform = CGAffineTransform(scaleX: 1, y: 1)
-                }
-
-                UIView.animate(withDuration: 0.2) {
-                    self.button3.transform = CGAffineTransform(scaleX: 1, y: 1)
-                }
-
-                UIView.animate(withDuration: 0.25) {
-                    self.button4.transform = CGAffineTransform(scaleX: 1, y: 1)
-                }
-            }
-        } else {
-            UIView.animate(withDuration: 0.3) {
-                self.menuView.alpha = 0
-                self.menuView.frame = CGRect(x: 20, y: HEIGHT - 80, width: 50, height: 120)
-                
-                self.button1.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                self.button2.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                self.button3.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                self.button4.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            } completion: { (Bool) in
-                self.button1.transform = CGAffineTransform(scaleX: 0, y: 0)
-                self.button2.transform = CGAffineTransform(scaleX: 0, y: 0)
-                self.button3.transform = CGAffineTransform(scaleX: 0, y: 0)
-                self.button4.transform = CGAffineTransform(scaleX: 0, y: 0)
-            }
-        }
-    }
-
-    
     let searchLabel = UILabel()
     let baseView =  UIView()
     
@@ -204,18 +101,6 @@ class MenuViewController: UIViewController,NavTitleProtocol {
             ConstraintMaker.left.equalTo(button5.snp.right).offset(10)
             ConstraintMaker.size.equalTo(CGSize(width: 125, height: 35))
         }
-    
-
-//        let remove = UIButton()
-//        remove.setTitle("重置", for: .normal)
-//        remove.setTitleColor(.black, for: .normal)
-//        remove.addTarget(self, action: #selector(clickRemove), for: .touchUpInside)
-//        self.view.addSubview(remove)
-//        remove.snp.makeConstraints { (ConstraintMaker) in
-//            ConstraintMaker.centerX.equalToSuperview()
-//            ConstraintMaker.bottom.equalToSuperview().offset(-30)
-//            ConstraintMaker.size.equalTo(CGSize(width: 80, height: 40))
-//        }
         
     }
 

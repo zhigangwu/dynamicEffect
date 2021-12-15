@@ -30,7 +30,7 @@ class MeterLabelViewController: UIViewController,NavTitleProtocol {
         }
         
         let chongzhi = UIButton()
-        chongzhi.setTitle("重置", for: .normal)
+        chongzhi.setTitle("开始", for: .normal)
         chongzhi.setTitleColor(.black, for: .normal)
         chongzhi.addTarget(self, action: #selector(clickChongzhi), for: .touchUpInside)
         self.view.addSubview(chongzhi)
@@ -39,11 +39,6 @@ class MeterLabelViewController: UIViewController,NavTitleProtocol {
             ConstraintMaker.centerX.equalToSuperview()
             ConstraintMaker.size.equalTo(CGSize(width: 80, height: 30))
         }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.endOfCountdown(stopValue: 475)
-        }
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -8,11 +8,16 @@
 import UIKit
 import SnapKit
 
+/// 通过 red 、 green 、blue 、alpha 颜色数值
+public let RGBAlpa:((Float,Float,Float,Float) -> UIColor ) = { (r: Float, g: Float , b: Float , a: Float ) -> UIColor in
+    return UIColor.init(red: CGFloat(CGFloat(r)/255.0), green: CGFloat(CGFloat(g)/255.0), blue: CGFloat(CGFloat(b)/255.0), alpha: CGFloat(a))
+}
+
 class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     var tableView = UITableView()
     var sectionArray = [""]
-    var titleArray = ["Lottery","SpinOf3D","SpinProgress","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","Menu","RewardsPopup","FoldMenu","CountDown"]
+    var titleArray = ["Lottery","SpinOf3D","Skill","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","ButtonAnimation","RewardsPopup","FoldMenu","CountDown"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +80,7 @@ class Factory {
         case 1:
             return SpinOf3DViewController()
         case 2:
-            return SpinProgressViewController()
+            return SkillViewController()
         case 3:
             return BubbleViewController()
         case 4:
@@ -87,11 +92,11 @@ class Factory {
         case 7:
             return MoveCellViewController()
         case 8:
-            return MenuViewController()
+            return ButtonAnimationViewController()
         case 9:
             return RewardsPopupViewController()
         case 10:
-            return FoldMenuViewController()
+            return FoldButtonAnimationViewController()
         case 11:
             return CountDownViewController()
         default:
