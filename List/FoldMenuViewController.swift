@@ -13,11 +13,6 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
     var navTitle: String {return "FoldMenu"}
     
     let sideMenu = UITableView()
-    let menuTitle = ["蔬菜","水果","肉类","水产"]
-    let menuListTitle = [["茄子","包菜","青菜","花菜"],
-                         ["苹果","梨","香蕉","葡萄"],
-                         ["猪肉","牛肉","羊肉","鸡肉"],
-                         ["螺蛳","螃蟹","鱼","虾"]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +22,34 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
         layoutSideMenu()
         sideMenu2()
         sideMenu3()
+        
+        requestData()
+    }
+    
+    func requestData() {
+        PublicRequest.requestDataList { [weak self] (successModel) -> (Void) in
+            let infoArray : Array<InfoModel> = successModel.successModelOfInfo
+            
+            for infoModel in infoArray {
+                if !self!.groupDataArray.contains(infoModel.infoOfFirstletter ?? "") {
+                    self!.groupDataArray.add(infoModel.infoOfFirstletter ?? "")
+                }
+            }
+            
+            for firstletter in self!.groupDataArray {
+                let array : NSMutableArray = []
+                for infoModel in infoArray {
+                    if (firstletter as! String) == infoModel.infoOfFirstletter {
+                        array.add(infoModel)
+                    }
+                }
+                self?.itemArrays.add(array)
+            }
+            
+            self?.collectionView?.reloadData()
+            self?.sideMenu.reloadData()
+            self?.groupMenuTableView.reloadData()
+        }
     }
     
     func layoutSideMenu() {
@@ -55,7 +78,7 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == sideMenu {
-            return menuTitle.count
+            return groupDataArray.count
         } else if tableView == groupMenuTableView {
             return 1
         }
@@ -67,14 +90,15 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
         if tableView == sideMenu {
             if deffaultIndex == 0 {
                 if sectionClickIndex == section  {
-                    let arr : [String] = menuListTitle[sectionClickIndex!]
+                    let arr : Array<InfoModel> = self.itemArrays[sectionClickIndex!] as! Array<InfoModel>
                     return arr.count
                 } else {
                     return 0
                 }
             } else {
                 if sectionClickArray.contains(section) {
-                    let arr : [String] = menuListTitle[section]
+//                    let arr : [String] = self.itemArrays[section] as! [String]
+                    let arr : Array<InfoModel> = self.itemArrays[section] as! Array<InfoModel>
                     return arr.count
                 } else {
                     return 0
@@ -97,7 +121,8 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
         if tableView == sideMenu {
             let menuView = MenuView()
             
-            menuView.menuButton.setTitle(menuTitle[section], for: .normal)
+            menuView.backgroundColor = .white
+            menuView.menuButton.setTitle((self.groupDataArray[section] as! String), for: .normal)
             menuView.menuButton.tag = section
             menuView.delegate = self
             
@@ -241,7 +266,7 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
     
     //MARK: ==================================sideMenu3==================================
     let groupMenuTableView = UITableView()
-    let groupDataArray = ["A","B","C","D","E"]
+    let groupDataArray : NSMutableArray = []
     
     var collectionView : UICollectionView? = nil
     func sideMenu3() {
@@ -292,13 +317,17 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
         if tableView == sideMenu {
             let sideCell = tableView.dequeueReusableCell(withIdentifier: "side", for: indexPath)
             
+            sideCell.textLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+            
             if deffaultIndex == 0 {
-                let arr : [String] = menuListTitle[sectionClickIndex!]
-                sideCell.textLabel?.text = arr[indexPath.row]
+                let arr : Array<InfoModel> = self.itemArrays[sectionClickIndex!] as! Array<InfoModel>
+                let infoModel = arr[indexPath.row]
+                sideCell.textLabel?.text = infoModel.infoOfName
             } else {
                 if sectionClickArray.contains(indexPath.section) {
-                    let arr : [String] = menuListTitle[indexPath.section]
-                    sideCell.textLabel?.text = arr[indexPath.row]
+                    let arr : Array<InfoModel> = self.itemArrays[indexPath.section] as! Array<InfoModel>
+                    let infoModel = arr[indexPath.row]
+                    sideCell.textLabel?.text = infoModel.infoOfName
                 }
             }
             
@@ -307,7 +336,7 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
             let groupCell = tableView.dequeueReusableCell(withIdentifier: "group", for: indexPath)
              
             groupCell.textLabel?.textAlignment = .center
-            groupCell.textLabel?.text = self.groupDataArray[indexPath.row]
+            groupCell.textLabel?.text = (self.groupDataArray[indexPath.row] as! String)
             
             if groupIndex == indexPath.row {
                 groupCell.backgroundColor = .purple
@@ -329,52 +358,24 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
     
     
     //MARK: ==================================collectionViewDelegate==================================
-    let itemArrays = [["https://car2.autoimg.cn/cardfs/series/g26/M0B/AE/B3/autohomecar__wKgHEVs9u5WAV441AAAKdxZGE4U148.png",
-                       "https://car2.autoimg.cn/cardfs/series/g26/M05/B0/29/autohomecar__ChcCP1s9u5qAemANAABON_GMdvI451.png",
-                       "https://car2.autoimg.cn/cardfs/series/g21/M06/5F/75/autohomecar__ChsEdmATuFGAJ6LHAAAMk3ugjWo809.png",
-                       "https://car3.autoimg.cn/cardfs/series/g24/M01/82/2B/autohomecar__ChwFjl7LjQ2AP3opAAAZdf47yLI833.png",
-                       "https://car2.autoimg.cn/cardfs/series/g24/M08/0F/C6/autohomecar__Chtk3WCrG-KAFes4AAAHQi7g7mc829.png",
-                       "https://car3.autoimg.cn/cardfs/series/g27/M00/FB/E1/autohomecar__ChsEnVzmW--AExZ6AABfZsjdIhI251.png",
-                       "https://car3.autoimg.cn/cardfs/series/g27/M05/AB/2E/autohomecar__wKgHHls8hiKADrqGAABK67H4HUI503.png",
-                       "https://car3.autoimg.cn/cardfs/series/g30/M07/B0/47/autohomecar__wKgHPls9vLOAHILAAAAWGGhA_W0282.png"],
-                      ["https://car3.autoimg.cn/cardfs/series/g26/M00/AF/E7/autohomecar__wKgHHVs9u6mAaY6mAAA2M840O5c440.png",
-                       "https://car2.autoimg.cn/cardfs/series/g8/M05/78/7D/autohomecar__ChsEwGDymG6ATewSAAAMXREb5AQ823.png",
-                       "https://car2.autoimg.cn/cardfs/series/g1/M08/18/4F/autohomecar__ChsEmV5fMd6AZK-bAAAg8taR7xI407.png",
-                       "https://car2.autoimg.cn/cardfs/series/g24/M04/A1/26/autohomecar__ChwFjmDJkXaAUvLTAAAHQmdx1V4583.png",
-                       "https://car3.autoimg.cn/cardfs/series/g27/M04/61/EC/autohomecar__ChsEfFzCyuGAasIhAABhYRrAZ-M141.png",
-                       "https://car3.autoimg.cn/cardfs/series/g2/M02/2A/97/autohomecar__ChsEkF7Dp1mAZ9jIAAAUTcLHE7s133.png",
-                       "https://car2.autoimg.cn/cardfs/series/g24/M04/C9/71/autohomecar__ChwFjmC0hm6AC0CtAAA25rbWpqA875.png"],
-                      ["https://car3.autoimg.cn/cardfs/series/g28/M06/44/F5/autohomecar__ChwFkl9y_JqAVybMAAAUINDQ2uo180.png",
-                       "https://car3.autoimg.cn/cardfs/series/g30/M00/AF/12/autohomecar__wKgHHFs9s9OAOb66AAAYgXAgE6Q888.png",
-                       "https://car2.autoimg.cn/cardfs/series/g30/M0B/5C/88/autohomecar__ChsEf1_llNOAIrJgAAAQANAIBSA602.png",
-                       "https://car2.autoimg.cn/cardfs/series/g29/M09/4F/71/autohomecar__ChsEfl56zDqADVh1AAAthoSARhM901.png",
-                       "https://car2.autoimg.cn/cardfs/series/g29/M02/AA/69/autohomecar__wKgHJFs8gvyAIOjpAAAP8QDmnsg975.png"],
-                      ["https://car2.autoimg.cn/cardfs/series/g24/M07/57/D8/autohomecar__ChsEeV26zOKAATwCAAAMlhPv54M195.png",
-                       "https://car2.autoimg.cn/cardfs/series/g30/M02/F9/F0/autohomecar__ChcCSV38aQSAUL_RAAB_z1788XE540.png",
-                       "https://car3.autoimg.cn/cardfs/series/g25/M09/50/8C/autohomecar__ChsEmF9xTy2AbSE3AAAT8bSy-30433.png",
-                       "https://car3.autoimg.cn/cardfs/series/g24/M05/60/3B/autohomecar__ChwFjmDCtHeADhPVAAAaNKkqdAA838.png",
-                       "https://car2.autoimg.cn/cardfs/series/g29/M07/51/B9/autohomecar__ChsEflvzc-CAQAjsAAAcpo1Owuo575.png",
-                       "https://car3.autoimg.cn/cardfs/series/g29/M07/AB/4F/autohomecar__wKgHJFs8ntuAMyzLAAAiej-Yyi4735.png",
-                       "https://car3.autoimg.cn/cardfs/series/g1/M0A/BA/5C/autohomecar__ChsEmV7d8LqAD7upAAAlhzwMg2c093.png",
-                       "https://car2.autoimg.cn/cardfs/series/g30/M00/AF/14/autohomecar__wKgHHFs9s_KAaauXAAAa0T_XCnU027.png",
-                       "https://car2.autoimg.cn/cardfs/series/g10/M11/A0/BA/autohomecar__ChsE8V_lqsuAfDh_AABItIlAeNM038.png",
-                       "https://car3.autoimg.cn/cardfs/series/g28/M02/B0/57/autohomecar__wKgHI1s9uNeAb52AAAASYiac9j0595.png"],
-                      ["https://car2.autoimg.cn/cardfs/series/g26/M00/C9/FA/autohomecar__ChxkjmF7W0aAMzb0AAAGiT8-x8g870.png",
-                       "https://car2.autoimg.cn/cardfs/series/g5/M0D/2A/82/autohomecar__ChwEl2E22UqAArxVAAAWH9Z3-BU959.png",
-                       "https://car2.autoimg.cn/cardfs/series/g5/M0D/2A/82/autohomecar__ChwEl2E22UqAArxVAAAWH9Z3-BU959.png",
-                       "https://car3.autoimg.cn/cardfs/series/g29/M01/AB/A0/autohomecar__wKgHJFs8rvuABvjcAAATebzQNMg932.png",
-                       ]]
+    let itemArrays : NSMutableArray = []
     var groupIndex : Int? = 0
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let array : Array<Any> = self.itemArrays[groupIndex!]
-        return array.count
+        if self.itemArrays.count != 0 {
+            let array : Array<Any> = self.itemArrays[groupIndex!] as! Array<Any>
+            return array.count
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let itemCell = collectionView.dequeueReusableCell(withReuseIdentifier: "item", for: indexPath) as! ItemCollectionViewCell
         
-        let array : Array<Any> = self.itemArrays[groupIndex!]
-        itemCell.itemIcon.kf.setImage(with: URL(string: array[indexPath.row] as! String))
+        if self.itemArrays.count != 0 {
+            let array : Array<InfoModel> = self.itemArrays[groupIndex!] as! Array<InfoModel>
+            let infoModel = array[indexPath.row]
+            itemCell.itemIcon.kf.setImage(with: URL(string: "https:" + infoModel.infoOfImg!))
+        }
         
         return itemCell
     }

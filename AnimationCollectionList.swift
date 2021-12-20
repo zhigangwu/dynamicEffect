@@ -17,7 +17,7 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     
     var tableView = UITableView()
     var sectionArray = [""]
-    var titleArray = ["Lottery","SpinOf3D","Skill","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","ButtonAnimation","RewardsPopup","FoldMenu","CountDown"]
+    var titleArray = ["Lottery","SpinOf3D","Skill","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","ButtonAnimation","RewardsPopup","FoldMenu","CountDown","PageMenu"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +99,8 @@ class Factory {
             return FoldButtonAnimationViewController()
         case 11:
             return CountDownViewController()
+        case 12:
+            return PageMenuViewController()
         default:
             return LotteryViewController()
         }
