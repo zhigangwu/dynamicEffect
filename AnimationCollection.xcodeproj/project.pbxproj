@@ -15,6 +15,8 @@
 		945E1ABF274CEE5100BE151D /* CountDownModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945E1ABE274CEE5100BE151D /* CountDownModel.swift */; };
 		947A9B6B26E8A63A0089E28E /* ButtonStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947A9B6A26E8A63A0089E28E /* ButtonStyleViewController.swift */; };
 		947BCA732727D2A3005F89C5 /* FoldMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947BCA722727D2A3005F89C5 /* FoldMenuViewController.swift */; };
+		947C5D1F277AFB1400FA5866 /* AdvancingStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C5D1E277AFB1400FA5866 /* AdvancingStyleViewController.swift */; };
+		947C5D24277B0F4800FA5866 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C5D23277B0F4800FA5866 /* DetailView.swift */; };
 		9498E116277018DD00E8CFAD /* PublicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9498E115277018DD00E8CFAD /* PublicRequest.swift */; };
 		94A6F8D627016F430053AC9E /* ButtonAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A6F8D527016F430053AC9E /* ButtonAnimationViewController.swift */; };
 		94AAF30E27055174006ED9B7 /* RewardsPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */; };
@@ -45,6 +47,8 @@
 		945E1ABE274CEE5100BE151D /* CountDownModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownModel.swift; sourceTree = "<group>"; };
 		947A9B6A26E8A63A0089E28E /* ButtonStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyleViewController.swift; sourceTree = "<group>"; };
 		947BCA722727D2A3005F89C5 /* FoldMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldMenuViewController.swift; sourceTree = "<group>"; };
+		947C5D1E277AFB1400FA5866 /* AdvancingStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancingStyleViewController.swift; sourceTree = "<group>"; };
+		947C5D23277B0F4800FA5866 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		9498E115277018DD00E8CFAD /* PublicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicRequest.swift; sourceTree = "<group>"; };
 		94A6F8D527016F430053AC9E /* ButtonAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationViewController.swift; sourceTree = "<group>"; };
 		94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsPopupViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +87,15 @@
 				2D90C5EBAF07AACA4210916A /* Pods-AnimationCollection.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		947C5D20277B050800FA5866 /* PageMenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9440BE76276B0DCF00FE97AD /* PageMenuViewController.swift */,
+				947C5D23277B0F4800FA5866 /* DetailView.swift */,
+			);
+			path = PageMenuViewController;
 			sourceTree = "<group>";
 		};
 		94B9E69626B14287000CCA6A = {
@@ -134,10 +147,11 @@
 				94A6F8D527016F430053AC9E /* ButtonAnimationViewController.swift */,
 				94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */,
 				947BCA722727D2A3005F89C5 /* FoldMenuViewController.swift */,
-				9440BE76276B0DCF00FE97AD /* PageMenuViewController.swift */,
+				947C5D20277B050800FA5866 /* PageMenuViewController */,
 				945E1ABB274CEDDC00BE151D /* CountDownViewController.swift */,
 				945E1ABE274CEE5100BE151D /* CountDownModel.swift */,
 				942BC5A027608D220097240C /* 翻倍动效.gif */,
+				947C5D1E277AFB1400FA5866 /* AdvancingStyleViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -270,6 +284,7 @@
 				94B9E6CB26B1505A000CCA6A /* BubbleViewController.swift in Sources */,
 				94B9E6BB26B143CF000CCA6A /* AnimationCollectionList.swift in Sources */,
 				9498E116277018DD00E8CFAD /* PublicRequest.swift in Sources */,
+				947C5D24277B0F4800FA5866 /* DetailView.swift in Sources */,
 				943726D227699135001C609F /* SkillViewController.swift in Sources */,
 				94A6F8D627016F430053AC9E /* ButtonAnimationViewController.swift in Sources */,
 				945E1ABC274CEDDC00BE151D /* CountDownViewController.swift in Sources */,
@@ -277,6 +292,7 @@
 				94B9E6F026B161C4000CCA6A /* MeterLabelViewController.swift in Sources */,
 				94B9E6A326B14287000CCA6A /* AppDelegate.swift in Sources */,
 				9440BE77276B0DCF00FE97AD /* PageMenuViewController.swift in Sources */,
+				947C5D1F277AFB1400FA5866 /* AdvancingStyleViewController.swift in Sources */,
 				94B9E6A526B14287000CCA6A /* SceneDelegate.swift in Sources */,
 				94B9E6C526B14D1F000CCA6A /* SpinOf3DViewController.swift in Sources */,
 				94B9E6C226B14A9E000CCA6A /* LotteryViewController.swift in Sources */,
@@ -431,9 +447,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = XP4B8Z5YVC;
+				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = AnimationCollection/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -441,7 +458,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AnimationCollection.AnimationCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = test_development_profile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -453,9 +470,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = XP4B8Z5YVC;
+				DEVELOPMENT_TEAM = "";
+				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = AnimationCollection/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -463,7 +481,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AnimationCollection.AnimationCollection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = test_development_profile;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -17,7 +17,7 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     
     var tableView = UITableView()
     var sectionArray = [""]
-    var titleArray = ["Lottery","SpinOf3D","Skill","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","ButtonAnimation","RewardsPopup","FoldMenu","CountDown","PageMenu"]
+    var titleArray = ["Lottery","SpinOf3D","Skill","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","ButtonAnimation","RewardsPopup","FoldMenu","CountDown","PageMenu","AdvancingStyle"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,8 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
         tableView.snp.makeConstraints { (ConstraintMaker) in
             ConstraintMaker.edges.equalToSuperview()
         }
+        
+        requestData()
     }
 
     
@@ -53,18 +55,29 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(Factory.create(index: indexPath.row) as! UIViewController, animated: true)
+        if self.model != nil {
+            let viewController = Factory.create(index: indexPath.row) as! UIViewController
+            if indexPath.row == 10 {
+                let foldMenu : FoldMenuViewController = viewController as! FoldMenuViewController
+                foldMenu.successModel = self.model
+            } else if indexPath.row == 12 {
+                let pageMenu : PageMenuViewController = viewController as! PageMenuViewController
+                pageMenu.successModel = self.model
+            }
+            self.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            print("稍后再试")
+        }
+
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    var model : SuccessModel? = nil
+    func requestData() {
+        PublicRequest.requestDataList { [weak self] (successModel) -> (Void) in
+            self?.model = successModel
+            self?.tableView.reloadData()
+        }
     }
-    */
 
 }
 
@@ -96,11 +109,13 @@ class Factory {
         case 9:
             return RewardsPopupViewController()
         case 10:
-            return FoldButtonAnimationViewController()
+            return FoldMenuViewController()
         case 11:
             return CountDownViewController()
         case 12:
             return PageMenuViewController()
+        case 13:
+            return AdvancingStyleViewController()
         default:
             return LotteryViewController()
         }

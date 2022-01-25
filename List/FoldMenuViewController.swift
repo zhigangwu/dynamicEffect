@@ -8,10 +8,11 @@
 import UIKit
 import Kingfisher
 
-class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITableViewDelegate,UITableViewDataSource,ClickMenuDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
+class FoldMenuViewController: UIViewController,NavTitleProtocol,UITableViewDelegate,UITableViewDataSource,ClickMenuDelegate,UICollectionViewDelegate,UICollectionViewDataSource {
 
     var navTitle: String {return "FoldMenu"}
     
+    var successModel : SuccessModel? = nil
     let sideMenu = UITableView()
     
     override func viewDidLoad() {
@@ -27,28 +28,27 @@ class FoldButtonAnimationViewController: UIViewController,NavTitleProtocol,UITab
     }
     
     func requestData() {
-        PublicRequest.requestDataList { [weak self] (successModel) -> (Void) in
-            let infoArray : Array<InfoModel> = successModel.successModelOfInfo
-            
+        if self.successModel != nil {
+            let infoArray : Array<InfoModel> = self.successModel!.successModelOfInfo
             for infoModel in infoArray {
-                if !self!.groupDataArray.contains(infoModel.infoOfFirstletter ?? "") {
-                    self!.groupDataArray.add(infoModel.infoOfFirstletter ?? "")
+                if !self.groupDataArray.contains(infoModel.infoOfFirstletter ?? "") {
+                    self.groupDataArray.add(infoModel.infoOfFirstletter ?? "")
                 }
             }
             
-            for firstletter in self!.groupDataArray {
+            for firstletter in self.groupDataArray {
                 let array : NSMutableArray = []
                 for infoModel in infoArray {
                     if (firstletter as! String) == infoModel.infoOfFirstletter {
                         array.add(infoModel)
                     }
                 }
-                self?.itemArrays.add(array)
+                self.itemArrays.add(array)
             }
             
-            self?.collectionView?.reloadData()
-            self?.sideMenu.reloadData()
-            self?.groupMenuTableView.reloadData()
+            self.collectionView?.reloadData()
+            self.sideMenu.reloadData()
+            self.groupMenuTableView.reloadData()
         }
     }
     

@@ -9,10 +9,9 @@ import UIKit
 
 class PageMenuViewController: UIViewController,NavTitleProtocol,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource {
 
-    
-
     var navTitle: String {return "PageMenu"}
     
+    var successModel : SuccessModel? = nil
     let layout = UICollectionViewFlowLayout()
     var collectionView : UICollectionView? = nil
     let titleArray : NSMutableArray = []
@@ -30,6 +29,15 @@ class PageMenuViewController: UIViewController,NavTitleProtocol,UICollectionView
         self.view.backgroundColor = .white
         self.navigationItem.title = navTitle
         
+        let backButton = UIButton(type: .custom)
+        backButton.setTitle("←", for: .normal)
+        backButton.setTitleColor(.black, for: .normal)
+        backButton.frame = CGRect(x: 200, y: 13, width: 18, height: 18)
+        backButton.addTarget(self, action: #selector(back), for: .touchUpInside)
+        let backView = UIBarButtonItem(customView: backButton)
+        self.navigationItem.leftBarButtonItem = backView
+
+
         layout.scrollDirection = .horizontal
         
         collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: layout)
@@ -89,30 +97,31 @@ class PageMenuViewController: UIViewController,NavTitleProtocol,UICollectionView
     }
     
     func requestData() {
-        PublicRequest.requestDataList { [weak self] (successModel) -> (Void) in
-            let infoArray : Array<InfoModel> = successModel.successModelOfInfo
-            
+        if self.successModel != nil {
+            let infoArray : Array<InfoModel> = self.successModel!.successModelOfInfo
+
             for infoModel in infoArray {
-                if !self!.titleArray.contains(infoModel.infoOfFirstletter ?? "") {
-                    self!.titleArray.add(infoModel.infoOfFirstletter ?? "")
+                if !self.titleArray.contains(infoModel.infoOfFirstletter ?? "") {
+                    self.titleArray.add(infoModel.infoOfFirstletter ?? "")
                 }
             }
-            
-            for firstletter in self!.titleArray {
+
+            for firstletter in self.titleArray {
                 let array : NSMutableArray = []
                 for infoModel in infoArray {
                     if (firstletter as! String) == infoModel.infoOfFirstletter {
                         array.add(infoModel)
                     }
                 }
-                self?.itemArrays.add(array)
+                self.itemArrays.add(array)
             }
-            
-            self?.collectionView?.reloadData()
-            self?.tableView.reloadData()
+
+            self.collectionView?.reloadData()
+            self.tableView.reloadData()
         }
     }
     
+    //MARK: ========================collectionView==============================
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return titleArray.count
     }
@@ -135,11 +144,16 @@ class PageMenuViewController: UIViewController,NavTitleProtocol,UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         defaultSelectIndex = indexPath.row
         collectionView.reloadData()
-        if indexPath.row > 2 {
-            let moveIndex = indexPath.row + 1 - 3
-            collectionView.setContentOffset(CGPoint(x: itemWidth * CGFloat(moveIndex), y: 0), animated: true)
+        let moveIndex = indexPath.row + 1 - 3
+        if unfoldBool == false {
+            if indexPath.row > 2 {
+                collectionView.setContentOffset(CGPoint(x: itemWidth * CGFloat(moveIndex), y: 0), animated: true)
+            } else {
+                collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            }
         } else {
-            collectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            horizontalCollectionView()
+            collectionView.setContentOffset(CGPoint(x: itemWidth * CGFloat(moveIndex), y: 0), animated: true)
         }
         tableView.reloadData()
     }
@@ -168,10 +182,10 @@ class PageMenuViewController: UIViewController,NavTitleProtocol,UICollectionView
     var unfoldBool : Bool = false
     @objc func unfoldCollectionView(sender : UIButton) {
         if itemWidth != 0 {
-            let numRows = (WIDTH - 50) / itemWidth
-            let numSections = CGFloat(self.titleArray.count) / numRows
-            
             if unfoldBool == false {
+                let numRows = (WIDTH - 50) / itemWidth
+                let numSections = CGFloat(self.titleArray.count) / numRows
+                
                 UIView.animate(withDuration: 0.3) {
                     self.unfoldIcon.transform = CGAffineTransform(rotationAngle: .pi)
                 }
@@ -181,18 +195,22 @@ class PageMenuViewController: UIViewController,NavTitleProtocol,UICollectionView
                 })
                 unfoldBool = true
             } else {
-                UIView.animate(withDuration: 0.3) {
-                    self.unfoldIcon.transform = CGAffineTransform(rotationAngle: 0)
-                }
-                layout.scrollDirection = .horizontal
-                collectionView?.snp.updateConstraints({ (ConstraintMaker) in
-                    ConstraintMaker.height.equalTo(50)
-                })
-                unfoldBool = false
+                horizontalCollectionView()
             }
 
             collectionView?.reloadData()
         }
+    }
+    
+    func horizontalCollectionView() {
+        UIView.animate(withDuration: 0.3) {
+            self.unfoldIcon.transform = CGAffineTransform(rotationAngle: 0)
+        }
+        layout.scrollDirection = .horizontal
+        collectionView?.snp.updateConstraints({ (ConstraintMaker) in
+            ConstraintMaker.height.equalTo(50)
+        })
+        unfoldBool = false
     }
     
     //MARK: ========================tableview==============================
@@ -218,8 +236,34 @@ class PageMenuViewController: UIViewController,NavTitleProtocol,UICollectionView
         return listCell
     }
     
+    var detailView : DetailView? = nil
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let array : Array<InfoModel> = self.itemArrays[defaultSelectIndex!] as! Array<InfoModel>
+        let infoModel : InfoModel = array[indexPath.row]
+        
+        let listCell = tableView.cellForRow(at: indexPath) as! ListTableViewCell
+        let listIconRect = listCell.listIcon.superview?.convert(listCell.listIcon.frame, to: self.view)
+        listCell.clickAnimation { [weak self] in
+            self?.detailView?.removeFromSuperview()
+            self?.detailView = DetailView()
+            self?.detailView!.frame = self!.view.frame
+            self?.detailView!.iconImageViewAnimation(infoModel: infoModel, startFrame: listIconRect ?? CGRect())
+            self?.view.addSubview(self!.detailView!)
+            self?.navigationItem.title = infoModel.infoOfName
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
+    }
+    
+    @objc func back() {
+        if detailView != nil {
+            detailView?.removeFromSuperview()
+            detailView = nil
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 
@@ -250,6 +294,7 @@ class ListTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        listIcon.transform = CGAffineTransform(scaleX: 1, y: 1)
         listIcon.layer.borderWidth = 0.5
         listIcon.layer.borderColor = UIColor.black.cgColor
         self.contentView.addSubview(listIcon)
@@ -267,7 +312,20 @@ class ListTableViewCell: UITableViewCell {
         }
     }
     
+    func clickAnimation(finish: (() -> Void)? = nil) {
+        UIView.animate(withDuration: 0.3) {
+            self.listIcon.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        } completion: { Bool in
+            UIView.animate(withDuration: 0.3) {
+                self.listIcon.transform = CGAffineTransform(scaleX: 1, y: 1)
+            } completion: { Bool in
+                finish!()
+            }
+        }
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
