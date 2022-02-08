@@ -5,3 +5,5 @@
 12/20: 新增PageMenu
 
 1/25: PageMenu菜单点击优化
+
+2022/2/8: CustomizeTabBar

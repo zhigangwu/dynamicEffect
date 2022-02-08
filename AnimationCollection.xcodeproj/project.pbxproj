@@ -18,6 +18,8 @@
 		947C5D1F277AFB1400FA5866 /* AdvancingStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C5D1E277AFB1400FA5866 /* AdvancingStyleViewController.swift */; };
 		947C5D24277B0F4800FA5866 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947C5D23277B0F4800FA5866 /* DetailView.swift */; };
 		9498E116277018DD00E8CFAD /* PublicRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9498E115277018DD00E8CFAD /* PublicRequest.swift */; };
+		949A19FB27A11AA5002DEDC8 /* CustomizeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A19FA27A11AA5002DEDC8 /* CustomizeTabBarViewController.swift */; };
+		949A19FD27A11F60002DEDC8 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 949A19FC27A11F60002DEDC8 /* Factory.swift */; };
 		94A6F8D627016F430053AC9E /* ButtonAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A6F8D527016F430053AC9E /* ButtonAnimationViewController.swift */; };
 		94AAF30E27055174006ED9B7 /* RewardsPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */; };
 		94B9E6A326B14287000CCA6A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B9E6A226B14287000CCA6A /* AppDelegate.swift */; };
@@ -50,6 +52,8 @@
 		947C5D1E277AFB1400FA5866 /* AdvancingStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancingStyleViewController.swift; sourceTree = "<group>"; };
 		947C5D23277B0F4800FA5866 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		9498E115277018DD00E8CFAD /* PublicRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicRequest.swift; sourceTree = "<group>"; };
+		949A19FA27A11AA5002DEDC8 /* CustomizeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeTabBarViewController.swift; sourceTree = "<group>"; };
+		949A19FC27A11F60002DEDC8 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		94A6F8D527016F430053AC9E /* ButtonAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationViewController.swift; sourceTree = "<group>"; };
 		94AAF30D27055174006ED9B7 /* RewardsPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardsPopupViewController.swift; sourceTree = "<group>"; };
 		94B9E69F26B14287000CCA6A /* AnimationCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimationCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +107,7 @@
 			children = (
 				94B9E6BA26B143CF000CCA6A /* AnimationCollectionList.swift */,
 				9498E115277018DD00E8CFAD /* PublicRequest.swift */,
+				949A19FC27A11F60002DEDC8 /* Factory.swift */,
 				94B9E6C026B14A89000CCA6A /* List */,
 				94B9E6A126B14287000CCA6A /* AnimationCollection */,
 				94B9E6A026B14287000CCA6A /* Products */,
@@ -152,6 +157,7 @@
 				945E1ABE274CEE5100BE151D /* CountDownModel.swift */,
 				942BC5A027608D220097240C /* 翻倍动效.gif */,
 				947C5D1E277AFB1400FA5866 /* AdvancingStyleViewController.swift */,
+				949A19FA27A11AA5002DEDC8 /* CustomizeTabBarViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -294,9 +300,11 @@
 				9440BE77276B0DCF00FE97AD /* PageMenuViewController.swift in Sources */,
 				947C5D1F277AFB1400FA5866 /* AdvancingStyleViewController.swift in Sources */,
 				94B9E6A526B14287000CCA6A /* SceneDelegate.swift in Sources */,
+				949A19FD27A11F60002DEDC8 /* Factory.swift in Sources */,
 				94B9E6C526B14D1F000CCA6A /* SpinOf3DViewController.swift in Sources */,
 				94B9E6C226B14A9E000CCA6A /* LotteryViewController.swift in Sources */,
 				94AAF30E27055174006ED9B7 /* RewardsPopupViewController.swift in Sources */,
+				949A19FB27A11AA5002DEDC8 /* CustomizeTabBarViewController.swift in Sources */,
 				947A9B6B26E8A63A0089E28E /* ButtonStyleViewController.swift in Sources */,
 				94B9E6E926B1554A000CCA6A /* Const.swift in Sources */,
 				945E1ABF274CEE5100BE151D /* CountDownModel.swift in Sources */,

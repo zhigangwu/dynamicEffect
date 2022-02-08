@@ -17,7 +17,7 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     
     var tableView = UITableView()
     var sectionArray = [""]
-    var titleArray = ["Lottery","SpinOf3D","Skill","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","ButtonAnimation","RewardsPopup","FoldMenu","CountDown","PageMenu","AdvancingStyle"]
+    var titleArray = ["Lottery","SpinOf3D","Skill","Bubble","MeterLabel","RollLabel","ButtonStyle","MoveCell","ButtonAnimation","RewardsPopup","FoldMenu","CountDown","PageMenu","AdvancingStyle","CustomizeTabBar"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,20 +55,27 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.model != nil {
-            let viewController = Factory.create(index: indexPath.row) as! UIViewController
-            if indexPath.row == 10 {
+        let viewController = VCFactory.create(index: indexPath.row) as! UIViewController
+        if indexPath.row == 10 {
+            if self.model != nil {
                 let foldMenu : FoldMenuViewController = viewController as! FoldMenuViewController
                 foldMenu.successModel = self.model
-            } else if indexPath.row == 12 {
+                self.navigationController?.pushViewController(foldMenu, animated: true)
+            } else {
+                print("稍后再试")
+            }
+        } else if indexPath.row == 12 {
+            if self.model != nil {
                 let pageMenu : PageMenuViewController = viewController as! PageMenuViewController
                 pageMenu.successModel = self.model
+                self.navigationController?.pushViewController(pageMenu, animated: true)
+            } else {
+                print("稍后再试")
             }
-            self.navigationController?.pushViewController(viewController, animated: true)
         } else {
-            print("稍后再试")
+            
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
-
     }
 
     var model : SuccessModel? = nil
@@ -81,46 +88,7 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
 
 }
 
-protocol NavTitleProtocol {
-    var navTitle : String { get }
-}
 
-class Factory {
-    static func create(index : Int) -> NavTitleProtocol {
-        switch index {
-        case 0:
-            return LotteryViewController()
-        case 1:
-            return SpinOf3DViewController()
-        case 2:
-            return SkillViewController()
-        case 3:
-            return BubbleViewController()
-        case 4:
-            return MeterLabelViewController()
-        case 5:
-            return RollLabelViewController()
-        case 6:
-            return ButtonStyleViewController()
-        case 7:
-            return MoveCellViewController()
-        case 8:
-            return ButtonAnimationViewController()
-        case 9:
-            return RewardsPopupViewController()
-        case 10:
-            return FoldMenuViewController()
-        case 11:
-            return CountDownViewController()
-        case 12:
-            return PageMenuViewController()
-        case 13:
-            return AdvancingStyleViewController()
-        default:
-            return LotteryViewController()
-        }
-    }
-}
 
 
 
