@@ -72,6 +72,13 @@ class AnimationCollectionList: UIViewController,UITableViewDelegate,UITableViewD
             } else {
                 print("稍后再试")
             }
+        } else if indexPath.row == 14 {
+            let customizeTabBar : CustomizeTabBarViewController = viewController as! CustomizeTabBarViewController
+            customizeTabBar.initConfiguration(bigIconArray: ["home_big","search_big","like_big","notice_big"],
+                                              smallIconArrsy: ["home","search","like","notice"],
+                                              titleArray: ["HOME","SEARCH","LIKE","NOTICE"],
+                                              VCArray: [HomeViewController(),SearchViewController(),LikeViewController(),NoticeViewController()])
+            self.navigationController?.pushViewController(customizeTabBar, animated: true)
         } else {
             
             self.navigationController?.pushViewController(viewController, animated: true)

@@ -15,19 +15,13 @@ class CustomizeTabBarViewController: UITabBarController,NavTitleProtocol,UITabBa
     
     private let bigItem = UIImageView()
     
-    private let itemTitle_1 = UILabel()
-    private let itemTitle_2 = UILabel()
-    private let itemTitle_3 = UILabel()
-    private let itemTitle_4 = UILabel()
-    
-    private let bigIconArray = ["home_big","search_big","like_big","notice_big"]
+    private var bigIconArray : NSMutableArray = []
     private let bigItemBackgroundColor = [ColorFactory.select(type: .backgroundColor_1),
                                           ColorFactory.select(type: .backgroundColor_2),
                                           ColorFactory.select(type: .backgroundColor_3),
                                           ColorFactory.select(type: .backgroundColor_4)]
-    private let iconArray = ["home","search","like","notice"]
-    private let titleArray = ["HOME","SEARCH","LIKE","NOTICE"]
-    
+    private var smallIconArrsy : NSMutableArray = []
+    private var titleArray : NSMutableArray = []
     
     private let itemIconArray : NSMutableArray = []
     private let itemTitleArray : NSMutableArray = []
@@ -39,12 +33,17 @@ class CustomizeTabBarViewController: UITabBarController,NavTitleProtocol,UITabBa
         self.navigationItem.title = navTitle
         self.delegate = self
         
-        addChild(HomeViewController())
-        addChild(SearchViewController())
-        addChild(LikeViewController())
-        addChild(NoticeViewController())
-        
         self.tabBar.tintColor = ColorFactory.select(type: .titleColor_1)
+    }
+    
+    func initConfiguration(bigIconArray : Array<String>, smallIconArrsy : Array<String>, titleArray : Array<String>, VCArray : Array<UIViewController>) {
+        self.bigIconArray.addObjects(from: bigIconArray)
+        self.smallIconArrsy.addObjects(from: smallIconArrsy)
+        self.titleArray.addObjects(from: titleArray)
+        
+        for viewController in VCArray {
+            self.addChild(viewController)
+        }
         
         layoutMainView()
     }
@@ -83,12 +82,12 @@ class CustomizeTabBarViewController: UITabBarController,NavTitleProtocol,UITabBa
                 let nSpacing = 15 * CGFloat(1 + 4 * i)
                 itemIcon.frame = CGRect(x: spacing + nSpacing , y: 15, width: 30, height: 30)
             }
-            itemIcon.image = UIImage(named: iconArray[i])
+            itemIcon.image = UIImage(named: smallIconArrsy[i] as! String)
             self.tabBar.addSubview(itemIcon)
             itemIconArray.add(itemIcon)
             
             let itemTitle = UILabel()
-            itemTitle.text = titleArray[i]
+            itemTitle.text = titleArray[i] as! String
             itemTitle.textAlignment = .center
             itemTitle.font = UIFont.systemFont(ofSize: 12, weight: .regular)
             itemTitle.textColor = bigItemBackgroundColor[i]
@@ -113,7 +112,7 @@ class CustomizeTabBarViewController: UITabBarController,NavTitleProtocol,UITabBa
     func changeBigItemBorderColor(index : Int) {
         let itemSpacing = (WIDTH - CGFloat(60 * self.viewControllers!.count)) / 5
         
-        bigItem.image = UIImage(named: bigIconArray[index])
+        bigItem.image = UIImage(named: bigIconArray[index] as! String)
         bigItem.backgroundColor = bigItemBackgroundColor[index]
         
         UIView.animate(withDuration: 0.3) { [self] in

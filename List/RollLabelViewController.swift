@@ -32,6 +32,7 @@ class RollLabelViewController: UIViewController,NavTitleProtocol {
             ConstraintMaker.centerX.equalToSuperview()
             ConstraintMaker.size.equalTo(CGSize(width: 25, height: 25))
         }
+        scrollLabelView.initBasic()
         
         //多个滚动
         let moreView = UIView()
@@ -57,6 +58,7 @@ class RollLabelViewController: UIViewController,NavTitleProtocol {
                 ConstraintMaker.left.equalToSuperview().offset(i * 25)
                 ConstraintMaker.size.equalTo(CGSize(width: 25, height: 25))
             }
+            moreScrollLabelView.initBasic()
             
             viewArray.add(moreScrollLabelView)
         }
@@ -74,17 +76,7 @@ class RollLabelViewController: UIViewController,NavTitleProtocol {
     }
     
     @objc func clickAddButton() {
-        let underLabelValue = Int(self.scrollLabelView.currentLabel.text!)! + 1
-        self.scrollLabelView.underLabel.text = String(underLabelValue)
-        UIView.animate(withDuration: 0.3) {
-            self.scrollLabelView.currentLabel.frame = CGRect(x: 0, y: -25, width: 25, height: 25)
-            self.scrollLabelView.underLabel.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        } completion: { (Bool) in
-            self.scrollLabelView.currentLabel.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-            self.scrollLabelView.underLabel.frame = CGRect(x: 0, y: 25, width: 25, height: 25)
-            self.scrollLabelView.currentLabel.text = String(underLabelValue)
-            self.scrollLabelView.underLabel.text = "0"
-        }
+        self.scrollLabelView.changeValue()
         
         let indexInt : Int?
         if pointIndex != nil {
@@ -133,90 +125,49 @@ class ScrollLabelView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let textArray = [0,1,2,3,4,5,6,7,8,9]
-        
-        scrollView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         scrollView.backgroundColor = .lightGray
-        scrollView.contentSize = CGSize(width: 25, height: 25 * 2)
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         self.addSubview(scrollView)
         
-        currentLabel.text = String(textArray[0])
         currentLabel.textAlignment = .center
         currentLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         scrollView.addSubview(currentLabel)
-        currentLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalToSuperview()
-            ConstraintMaker.centerX.equalToSuperview()
-            ConstraintMaker.size.equalTo(CGSize(width: 25, height: 25))
-        }
         
         underLabel.textAlignment = .center
         underLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         scrollView.addSubview(underLabel)
-        underLabel.snp.makeConstraints { (ConstraintMaker) in
-            ConstraintMaker.top.equalToSuperview().offset(25)
-            ConstraintMaker.centerX.equalToSuperview()
-            ConstraintMaker.size.equalTo(CGSize(width: 25, height: 25))
+
+    }
+    
+    func initBasic() {
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+        
+        scrollView.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        scrollView.contentSize = CGSize(width: self.frame.width, height: self.frame.height * 2)
+        currentLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        underLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: self.frame.height)
+        
+        let textArray = [0,1,2,3,4,5,6,7,8,9]
+        currentLabel.text = String(textArray[0])
+    }
+    
+    func changeValue() {
+        let underLabelValue = Int(self.currentLabel.text!)! + 1
+        self.underLabel.text = String(underLabelValue)
+        UIView.animate(withDuration: 0.3) {
+            self.currentLabel.frame = CGRect(x: 0, y: -self.frame.height, width: self.frame.width, height: self.frame.height)
+            self.underLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        } completion: { (Bool) in
+            self.currentLabel.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+            self.underLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: self.frame.height)
+            self.currentLabel.text = String(underLabelValue)
+            self.underLabel.text = "0"
         }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-}
-
-class MoreScrollLabelView: UIView {
-    
-    let scrollView = UIScrollView()
-    let geLabel = UILabel()
-    let shiLabel = UILabel()
-    let baiLabel = UILabel()
-    let qianLabel = UILabel()
-    let wanLabel = UILabel()
-    let shiWanLabel = UILabel()
-    let baiWanLabel = UILabel()
-    let qianWanLabel = UILabel()
-    
-    let scrollLabelView = ScrollLabelView()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        
-
-    }
-    
-    func showNumber(valueStr : String){
-//        let scan : Scanner = Scanner(string: valueStr)
-//        var value : Int = 0
-//        let bool = scan.scanInt(&value) && scan.isAtEnd
-//        if bool == false { //不是整数
-//
-//        } else {
-//
-//        }
-        
-        for i in 0..<valueStr.count {
-            let index1 = valueStr.index(valueStr.startIndex, offsetBy: i)
-
-            scrollLabelView.currentLabel.text = String(valueStr[index1])
-            self.addSubview(scrollLabelView)
-            scrollLabelView.snp.makeConstraints { (ConstraintMaker) in
-                ConstraintMaker.centerY.equalToSuperview()
-                ConstraintMaker.left.equalToSuperview().offset(i * 25)
-                ConstraintMaker.size.equalTo(CGSize(width: 25, height: 25))
-            }
-        }
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
 }
